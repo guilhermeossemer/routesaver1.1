@@ -47,7 +47,7 @@
       window.addEventListener("load", async () => {
         try {
           const reg = await navigator.serviceWorker.register("./public/sw.js", {
-            scope: "./public/"
+            scope: "/routesaver-firebase/public/"
           });
 
           console.log("SW registrado:", reg.scope);
