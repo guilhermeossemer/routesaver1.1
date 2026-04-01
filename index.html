@@ -44,11 +44,16 @@
   <script type="module" src="./public/js/auth.js"></script>
   <script>
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("./public/sw.js")
-        .then((reg) => console.log("SW registrado:", reg.scope))
-        .catch((err) => console.error("Erro ao registrar SW:", err));
+    window.addEventListener("load", async () => {
+      try {
+        const reg = await navigator.serviceWorker.register("./public/sw.js", {
+          scope: "./"
+        });
+
+        console.log("SW registrado:", reg.scope);
+      } catch (err) {
+        console.error("Erro ao registrar SW:", err);
+      }
     });
   }
 </script>
