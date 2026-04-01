@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RouteSaver - Dashboard</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="64x64" href="../img/favicon-64.png" />
+    <meta name="theme-color" content="#0b1220" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RouteSaver" />
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div>
+                    <p class="brand-badge">RouteSaver</p>
+                    <h1>Minhas rotas</h1>
+                </div>
+                <button id="logout-btn" class="logout-btn">Sair</button>
+            </div>
+
+            <!-- MINI DASHBOARD -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Total de rotas</span>
+                    <strong id="stat-total-routes">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Km total</span>
+                    <strong id="stat-total-km">0.00</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Média por rota</span>
+                    <strong id="stat-avg-km">0.00</strong>
+                </div>
+            </section>
+
+            <div class="route-actions">
+                <button id="start-route-btn" class="primary-btn">Iniciar rota</button>
+                <button id="undo-point-btn" class="secondary-btn">Voltar ponto</button>
+                <button id="clear-route-btn" class="secondary-btn">Limpar</button>
+            </div>
+
+            <!-- BUSCA DE LOCAL -->
+            <div class="location-search-card">
+                <p class="card-label">Adicionar ponto por busca</p>
+
+                <div class="location-search-row">
+                    <input type="text" id="location-search-input" placeholder="Buscar rua, bairro, empresa, local..."
+                        maxlength="120" />
+                    <button id="location-search-btn" class="primary-btn">Buscar</button>
+                </div>
+
+                <div id="location-search-results" class="location-search-results"></div>
+            </div>
+
+            <div class="route-preview-card">
+                <div class="card-top">
+                    <div>
+                        <p class="card-label">Rota atual</p>
+                        <h2 id="route-status">Aguardando</h2>
+                    </div>
+                    <span class="live-dot"></span>
+                </div>
+
+                <div class="preview-stats">
+                    <div class="preview-box">
+                        <span>Pontos</span>
+                        <strong id="route-points-count">0</strong>
+                    </div>
+
+                    <div class="preview-box">
+                        <span>Distância</span>
+                        <strong id="route-distance">0.00 km</strong>
+                    </div>
+                </div>
+
+                <input type="text" id="route-name" placeholder="Nome da rota" maxlength="60" />
+
+                <button id="save-route-btn" class="success-btn">Salvar rota</button>
+            </div>
+
+        </aside>
+
+        <!-- MAPA -->
+        <main class="map-wrapper">
+            <div id="map"></div>
+        </main>
+
+        <!-- SIDEBAR DIREITA -->
+        <aside class="routes-sidebar">
+            <div class="routes-list-wrapper">
+                <div class="routes-header">
+                    <h2>Rotas salvas</h2>
+                    <span id="routes-counter" class="routes-counter">0</span>
+                </div>
+
+                <div class="routes-tools">
+                    <input type="text" id="search-routes-input" placeholder="Buscar rota..." />
+
+                    <select id="sort-routes-select">
+                        <option value="recent">Mais recentes</option>
+                        <option value="oldest">Mais antigas</option>
+                        <option value="name-asc">Nome A-Z</option>
+                        <option value="name-desc">Nome Z-A</option>
+                        <option value="distance-desc">Maior distância</option>
+                        <option value="distance-asc">Menor distância</option>
+                    </select>
+                </div>
+
+                <div id="routes-list" class="routes-list"></div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- MODAL -->
+    <div id="custom-modal" class="custom-modal hidden">
+        <div class="custom-modal-content">
+            <div id="modal-icon" class="modal-icon">✓</div>
+            <h3 id="modal-title">Sucesso</h3>
+            <p id="modal-message">Mensagem</p>
+
+            <input type="text" id="modal-input" class="modal-input hidden" placeholder="Digite aqui..."
+                maxlength="60" />
+
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="modal-cancel-btn hidden">Cancelar</button>
+                <button id="modal-close-btn" class="modal-close-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script type="module" src="../js/dashboard.js"></script>
+</body>
+
+</html>
