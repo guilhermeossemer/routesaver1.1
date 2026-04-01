@@ -2,7 +2,7 @@
   "name": "RouteSaver Firebase",
   "short_name": "RouteSaver",
   "description": "Salve, visualize e inicie suas rotas com mapa interativo.",
-  "start_url": "./index.html",
+  "start_url": "./pages/dashboard.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0b1220",

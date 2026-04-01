@@ -43,20 +43,20 @@
 
   <script type="module" src="./public/js/auth.js"></script>
   <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", async () => {
-      try {
-        const reg = await navigator.serviceWorker.register("./public/sw.js", {
-          scope: "./"
-        });
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", async () => {
+        try {
+          const reg = await navigator.serviceWorker.register("./public/sw.js", {
+            scope: "./public/"
+          });
 
-        console.log("SW registrado:", reg.scope);
-      } catch (err) {
-        console.error("Erro ao registrar SW:", err);
-      }
-    });
-  }
-</script>
+          console.log("SW registrado:", reg.scope);
+        } catch (err) {
+          console.error("Erro ao registrar SW:", err);
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
